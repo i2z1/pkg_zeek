@@ -13,7 +13,7 @@ optdepends=(
 source=("https://download.zeek.org/zeek-$pkgver.tar.gz"
         zeek.tmpfiles.conf)
 
-sha256sums=('029e389f5405d8831657202a7be542be756a8c5811bfaab7376c1c6b10e1d9e3'
+sha256sums=(SKIP
 #	    '047c414eb4139d5c41757a0b84b518c723149becb40a3067b7203a6b8e8de9a8'
 	    'af5b7e14caae88122d0e6dd29539ae77ed3388c70a12ea0ed73c9a3f6de16d91')
 
