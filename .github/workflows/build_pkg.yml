@@ -23,7 +23,7 @@ jobs:
 
       - name: build
         run: |
-          docker build ${{ matrix.distro }} -t mybuild
+          docker build -t mybuild
 
       - name: copy
         run: |
