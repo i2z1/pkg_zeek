@@ -10,7 +10,7 @@ makedepends=(cmake swig bison flex openssl geoip gperftools shadow)
 optdepends=(
   'python-semantic-version: zeekpkg'
 )
-source=("https://download.zeek.org/zeek-$pkgver.tar.gz"#{,.asc}
+source=("https://download.zeek.org/zeek-$pkgver.tar.gz"
         zeek.tmpfiles.conf)
 
 sha256sums=('029e389f5405d8831657202a7be542be756a8c5811bfaab7376c1c6b10e1d9e3'
