@@ -22,9 +22,9 @@ b2sums=('b0c9795bd65beed65cbf1503babf9bdb57ebb8354a6c40e6075340c468679a017fe99a4
   'df5e4479c89cc2b0764e26e35bdcbcd7d00b131d7f4cd35c336e734ae334a40a2142285a2c8ea9db8961a34bb4d2799ba89505ab3e3881a16792c7e804ef1d73'
 )
 
-validpgpkeys=(
-  962FD2187ED5A1DD82FC478A33F15EAEF8CB8019 # The Zeek Team <info@zeek.org>
-)
+#validpgpkeys=(
+#  962FD2187ED5A1DD82FC478A33F15EAEF8CB8019 # The Zeek Team <info@zeek.org>
+#)
 
 build() {
   cmake -B build -S "zeek-$pkgver" \
