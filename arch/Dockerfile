@@ -3,7 +3,7 @@ FROM ghcr.io/archlinux/archlinux:latest
 
 ENV target zeek
 
-RUN pacman -Syu --noconfirm && pacman -S base-devel git cmake swig bison flex openssl geoip libmaxminddb python gperftools shadow bind --noconfirm
+RUN pacman -Syu --noconfirm && pacman -S base-devel glibc git cmake swig bison flex openssl geoip libmaxminddb python gperftools shadow bind --noconfirm
 RUN useradd -m arch
 USER arch
 WORKDIR /home/arch
