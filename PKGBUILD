@@ -1,5 +1,5 @@
 pkgname=zeek
-pkgver=7.0.3
+pkgver=7.1.1
 pkgrel=1
 pkgdesc="A network analysis framework"
 arch=('x86_64')
