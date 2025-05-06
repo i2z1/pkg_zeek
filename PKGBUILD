@@ -6,7 +6,7 @@ pkgdesc='A network analysis framework '
 arch=('x86_64')
 url='https://github.com/zeek/zeek'
 license=('BSD')
-depends=('libpcap' 'openssl-1.0' 'bash' 'python' 'swig' 'ruby' 'perl'
+depends=('libpcap' 'openssl-1.1' 'bash' 'python' 'swig' 'ruby' 'perl'
          'crypto++')
 makedepends=('git' 'cmake' 'python' 'swig' 'bison' 'flex' 'zlib')
 source=("git+https://github.com/$pkgname/$pkgname.git")
