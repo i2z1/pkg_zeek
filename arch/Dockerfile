@@ -3,7 +3,7 @@ FROM ghcr.io/archlinux/archlinux:latest
 
 ENV target zeek
 
-RUN pacman -Syu --noconfirm && pacman -S base-devel gcc glibc git cmake swig bison flex zlib libpcap make openssl geoip libmaxminddb python gperftools shadow dnsutils --noconfirm
+RUN pacman -Syu --noconfirm && pacman -S git cmake bison flex zlib libpcap openssl-1.0 bash python swig ruby perl crypto++ libmaxmindb --noconfirm
 RUN useradd -m arch
 USER arch
 WORKDIR /home/arch
