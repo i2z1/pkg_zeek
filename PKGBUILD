@@ -1,5 +1,5 @@
 pkgname=zeek
-pkgver=v8.0.0.dev
+pkgver=v8.0.0.dev.r59.g6f8924596
 pkgrel=1
 epoch=1
 pkgdesc='A network analysis framework '
@@ -9,8 +9,10 @@ license=('BSD')
 depends=('libpcap' 'openssl-1.1' 'bash' 'python' 'swig' 'ruby' 'perl'
          'crypto++')
 makedepends=('git' 'cmake' 'python' 'swig' 'bison' 'flex' 'zlib')
-source=("git+https://github.com/$pkgname/$pkgname.git")
-sha512sums=('SKIP')
+source=("git+https://github.com/$pkgname/$pkgname.git"
+        spicy_hilti.patch)
+sha256sums=('SKIP'
+            'd4e80c3a799e70676423dcab80944d89a8e0d564ba8cd0a4c8091a2b762ee8f0')
 
 pkgver() {
   cd $pkgname
@@ -20,8 +22,12 @@ pkgver() {
 
 prepare() {
   cd $pkgname
-
   git submodule update --init --recursive
+
+  cp ../spicy_hilti.patch $srcdir/zeek/auxil/spicy/
+  cd $srcdir/zeek/auxil/spicy/
+  git apply "spicy_hilti.patch"
+
 }
 
 build() {

@@ -1,0 +1,12 @@
+diff --git a/hilti/toolchain/include/ast/node-tag.h b/hilti/toolchain/include/ast/node-tag.h
+index 46af3056..6a97250e 100644
+--- a/hilti/toolchain/include/ast/node-tag.h
++++ b/hilti/toolchain/include/ast/node-tag.h
+@@ -3,6 +3,7 @@
+ #pragma once
+ 
+ #include <array>
++#include <cstdint>
+ #include <string>
+ 
+ namespace hilti::node {
