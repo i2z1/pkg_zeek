@@ -6,31 +6,35 @@ pkgdesc='A network analysis framework '
 arch=('x86_64')
 url='https://github.com/zeek/zeek'
 license=('BSD')
-depends=('libpcap' 'openssl-1.1' 'bash' 'python' 'swig' 'ruby' 'perl'
+depends=('libpcap' 'openssl' 'bash' 'python' 'swig' 'ruby' 'perl'
          'crypto++')
 makedepends=('git' 'cmake' 'python' 'swig' 'bison' 'flex' 'zlib')
-source=("git+https://github.com/$pkgname/$pkgname.git")
+source=("git+https://github.com/$pkgname/$pkgname.git"
+        zeek.tmpfiles.conf)
 
-sha256sums=('SKIP')
+sha256sums=('SKIP'
+            'af5b7e14caae88122d0e6dd29539ae77ed3388c70a12ea0ed73c9a3f6de16d91')
 
-pkgver() {
-  cd $pkgname
+#pkgver() {
+#  cd $pkgname
 
-  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
+# git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+#}
 
 prepare() {
-  cd $pkgname
-  git submodule update --init --recursive
+ cd $pkgname
+ git submodule update --init --recursive
 }
 
 build() {
-  cd $pkgname
 
-  ./configure \
-    --prefix=/usr/share/zeek \
-    --disable-broker-tests \
-    --disable-cpp-tests \
+  cmake -B build -S "zeek" \
+    -D CMAKE_INSTALL_PREFIX=/usr \
+    -D ZEEK_PYTHON_PREFIX:PATH=/usr \
+    -D ZEEK_ETC_INSTALL_DIR:PATH=/etc \
+    -D ZEEK_STATE_DIR:PATH=/var/lib \
+    -D ZEEK_SPOOL_DIR:PATH=/var/spool \
+    -D ZEEK_LOG_DIR:PATH=/var/log/zeek \
     -D BINARY_PACKAGING_MODE=ON \
     -D BUILD_SHARED_LIBS=ON \
     -D BUILD_STATIC_BINPAC=ON \
@@ -40,19 +44,18 @@ build() {
     -D INSTALL_ZEEK_ARCHIVER=ON \
     -D INSTALL_ZKG=ON
 
-  make
+  cmake --build build
 }
 
 package() {
-  cd $pkgname
+  DESTDIR="$pkgdir" cmake --install build
 
-  install -dm 755 "$pkgdir/usr/bin"
+  #rm -rf "$pkgdir/usr/var"
 
-  make DESTDIR="$pkgdir" install
+  install -dm0755 "$pkgdir/var/lib/zkg"
 
-  install -Dm 644 -t "$pkgdir/usr/share/doc/$pkgname" README CHANGES VERSION
-  install -Dm 644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+  install -Dm0644 zeek.tmpfiles.conf "$pkgdir/usr/lib/tmpfiles.d/zeek.conf"
 
-  cp -a "$pkgdir/usr/share/$pkgname/bin/"* "$pkgdir/usr/bin/"
-  rm -rf "$pkgdir/usr/share/$pkgname/bin"
+ # install -Dm0644 -t "$pkgdir/usr/share/licenses/$pkgname" \
+ #   "zeek-$pkgver"/COPYING{,-3rdparty}
 }

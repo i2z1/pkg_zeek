@@ -3,7 +3,7 @@ FROM ghcr.io/archlinux/archlinux:latest
 
 ENV target zeek
 
-RUN pacman -Syu --noconfirm && pacman -S base-devel git cmake bison flex zlib libpcap bash python swig ruby perl crypto++ libmaxminddb openssl-1.1 --noconfirm
+RUN pacman -Syu --noconfirm && pacman -S base-devel git cmake bison flex zlib libpcap bash python swig ruby perl crypto++ libmaxminddb openssl jq dnsmasq --noconfirm
 RUN useradd -m arch
 USER arch
 WORKDIR /home/arch
@@ -13,4 +13,4 @@ WORKDIR /home/arch/pkg_zeek
 
 RUN makepkg
 
-RUN sha256sum pkg_zeek-*-x86_64.pkg.tar.zst > pkg_zeek.sha256sum
+RUN sha256sum zeek-*-x86_64.pkg.tar.zst > zeek.sha256sum
