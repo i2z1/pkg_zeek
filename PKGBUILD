@@ -31,6 +31,14 @@ build() {
     --prefix=/usr/share/zeek \
     --disable-broker-tests \
     --disable-cpp-tests \
+    -D BINARY_PACKAGING_MODE=ON \
+    -D BUILD_SHARED_LIBS=ON \
+    -D BUILD_STATIC_BINPAC=ON \
+    -D BROKER_DISABLE_TESTS=ON \
+    -D BROKER_DISABLE_DOC_EXAMPLES=ON \
+    -D INSTALL_AUX_TOOLS=ON \
+    -D INSTALL_ZEEK_ARCHIVER=ON \
+    -D INSTALL_ZKG=ON
 
   make
 }
