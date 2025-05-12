@@ -29,6 +29,7 @@ prepare() {
 build() {
 
   cmake -B build -S "zeek" \
+    -D CMAKE_CXX_COMPILER=/usr/bin/gcc-13
     -D CMAKE_INSTALL_PREFIX=/usr \
     -D ZEEK_PYTHON_PREFIX:PATH=/usr \
     -D ZEEK_ETC_INSTALL_DIR:PATH=/etc \
